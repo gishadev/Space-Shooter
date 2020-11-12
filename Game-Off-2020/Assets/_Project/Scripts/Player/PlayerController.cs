@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -13,12 +14,17 @@ public class PlayerController : MonoBehaviour
     PlayerInput _controls;
     Rigidbody2D _rb;
     Transform _transform;
+    Transform _shotPos;
 
     private void Awake()
     {
         _controls = new PlayerInput();
         _rb = GetComponent<Rigidbody2D>();
         _transform = transform;
+
+        _shotPos = Array.Find(transform.GetComponentsInChildren<Transform>(), x => x.name == "ShotPos");
+        if (_shotPos == null)
+            Debug.LogError("'ShotPos' wasn't found!");
     }
 
     private void OnEnable()
@@ -44,7 +50,12 @@ public class PlayerController : MonoBehaviour
     #region Player Actions
     private void ShootPerformed(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Shoot Performed!");
+        ProjectileInstantiater instantiater = new BurstProjectileInstantiater(
+            spaceshipData.projectilePrefab,
+            _shotPos.position,
+            _transform.rotation, 15, 5f);
+
+        ProjectileCreator.CreateProjectile(instantiater);
     }
 
     private void PlayerThrusting(float thrustInput)

@@ -1,0 +1,34 @@
+﻿using UnityEngine;
+
+public class BurstProjectileInstantiater : ProjectileInstantiater
+{
+    private readonly GameObject prefab;
+    private readonly Vector3 position;
+    private readonly Quaternion rotation;
+    private readonly int projCount;
+    private readonly float spreading;
+
+    public BurstProjectileInstantiater(
+        GameObject _prefab, Vector3 _position, Quaternion _rotation, int _projCount, float _spreading)
+    {
+        prefab = _prefab;
+        position = _position;
+        rotation = _rotation;
+        projCount = _projCount;
+        spreading = _spreading;
+    }
+
+    public override void Instantiate()
+    {
+        float zStartOffset = rotation.eulerAngles.z - spreading * projCount / 2;
+        Quaternion startRot = Quaternion.Euler(Vector3.forward * zStartOffset);
+
+        for (int i = 0; i < projCount; i++)
+        {
+            float zProjOffset = startRot.eulerAngles.z + spreading * i;
+            Quaternion newRot = Quaternion.Euler(Vector3.forward * zProjOffset);
+
+            GameObject.Instantiate(prefab, position, newRot);
+        }
+    }
+}

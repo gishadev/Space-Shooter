@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Player Spaceship Data
   m_EditorClassIdentifier: 
   thrustAccelerationSpeed: 5
-  thrustMaxSpeed: 25
-  steeringSpeed: 250
+  thrustMaxSpeed: 20
+  steeringSpeed: 175
+  projectilePrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
