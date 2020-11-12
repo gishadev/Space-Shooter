@@ -3,20 +3,27 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float thrustSpeed;
-    [SerializeField] private float steeringSpeed;
+    [SerializeField] private PlayerSpaceshipData spaceshipData;
+
+    float _zRotation;
+
+    public float ThrustInput { get => _controls.Player.Thrust.ReadValue<float>(); }
+    public float SteeringInput { get => _controls.Player.Steering.ReadValue<float>(); }
 
     PlayerInput _controls;
+    Rigidbody2D _rb;
+    Transform _transform;
 
     private void Awake()
     {
         _controls = new PlayerInput();
+        _rb = GetComponent<Rigidbody2D>();
+        _transform = transform;
     }
 
     private void OnEnable()
     {
         _controls.Player.Shoot.performed += ShootPerformed;
-        _controls.Player.Movement.performed += OnMovement;
 
         _controls.Player.Enable();
     }
@@ -24,11 +31,15 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         _controls.Player.Shoot.performed -= ShootPerformed;
-        _controls.Player.Movement.performed -= OnMovement;
 
         _controls.Player.Disable();
     }
 
+    private void FixedUpdate()
+    {
+        PlayerThrusting(ThrustInput);
+        PlayerSteering(SteeringInput);
+    }
 
     #region Player Actions
     private void ShootPerformed(InputAction.CallbackContext ctx)
@@ -36,9 +47,22 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Shoot Performed!");
     }
 
-    private void OnMovement(InputAction.CallbackContext ctx)
+    private void PlayerThrusting(float thrustInput)
     {
-        Debug.LogFormat("Movement is {0}", ctx.ReadValue<Vector2>());
+        if (thrustInput <= 0)
+            return;
+
+        Vector2 addVel = (Vector2)_transform.up * thrustInput * spaceshipData.ThrustAccelerationSpeed * Time.deltaTime;
+        _rb.velocity = Vector2.ClampMagnitude(_rb.velocity + addVel, spaceshipData.ThrustMaxSpeed);
+    }
+
+    private void PlayerSteering(float steeringInput)
+    {
+        if (steeringInput == 0)
+            return;
+
+        _zRotation -= steeringInput * spaceshipData.SteeringSpeed * Time.deltaTime;
+        _transform.rotation = Quaternion.Euler(Vector3.forward * _zRotation);
     }
     #endregion
 }
