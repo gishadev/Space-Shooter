@@ -10,6 +10,7 @@ public class PlayerSpaceshipData : ScriptableObject
     [SerializeField] private float steeringSpeed;
 
     [Header("Shooting")]
+    public float secondsBtwShots;
     public GameObject projectilePrefab;
 
     public float ThrustAccelerationSpeed { get => thrustAccelerationSpeed; set => thrustAccelerationSpeed = Mathf.Max(value, 0); }

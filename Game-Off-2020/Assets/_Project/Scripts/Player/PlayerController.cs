@@ -6,10 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerSpaceshipData spaceshipData;
 
-    float _zRotation;
+    float _zRotation, _lastShootTime;
 
     public float ThrustInput => _controls.Player.Thrust.ReadValue<float>();
     public float SteeringInput => _controls.Player.Steering.ReadValue<float>();
+    public bool IsShootingInput { get; private set; }
 
     PlayerInput _controls;
     Rigidbody2D _rb;
@@ -27,18 +28,25 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("'ShotPos' wasn't found!");
     }
 
+    private void Start()
+    {
+        _lastShootTime = Time.time;
+    }
+
     private void OnEnable()
     {
-        _controls.Player.Shoot.performed += ShootPerformed;
-
         _controls.Player.Enable();
+
+        _controls.Player.Shoot.performed += ctx => OnShoot(ctx);
+        _controls.Player.Shoot.canceled += ctx => OnShoot(ctx);
     }
 
     private void OnDisable()
     {
-        _controls.Player.Shoot.performed -= ShootPerformed;
-
         _controls.Player.Disable();
+
+        _controls.Player.Shoot.performed -= ctx => OnShoot(ctx);
+        _controls.Player.Shoot.canceled -= ctx => OnShoot(ctx);
     }
 
     private void FixedUpdate()
@@ -47,23 +55,41 @@ public class PlayerController : MonoBehaviour
         PlayerSteering(SteeringInput);
     }
 
-    #region Player Actions
-    private void ShootPerformed(InputAction.CallbackContext ctx)
+    private void Update()
     {
-        ProjectileInstantiater instantiater = new BurstProjectileInstantiater(
+        if (IsReadyForShoot()) Shoot();
+    }
+
+    #region Player Actions
+    #region Shoot
+    private void OnShoot(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+            IsShootingInput = true;
+        else if (ctx.canceled)
+            IsShootingInput = false;
+    }
+    private void Shoot()
+    {
+        var instantiater = new BurstProjectileInstantiater(
             spaceshipData.projectilePrefab,
             _shotPos.position,
             _transform.rotation, 15, 5f);
 
         ProjectileCreator.CreateProjectile(instantiater);
-    }
 
+        _lastShootTime = Time.time + spaceshipData.secondsBtwShots;
+    }
+    private bool IsReadyForShoot() => IsShootingInput && _lastShootTime - Time.time < 0;
+    #endregion
+
+    #region Movement
     private void PlayerThrusting(float thrustInput)
     {
         if (thrustInput <= 0)
             return;
 
-        Vector2 addVel = (Vector2)_transform.up * thrustInput * spaceshipData.ThrustAccelerationSpeed * Time.deltaTime;
+        var addVel = (Vector2)_transform.up * thrustInput * spaceshipData.ThrustAccelerationSpeed * Time.deltaTime;
         _rb.velocity = Vector2.ClampMagnitude(_rb.velocity + addVel, spaceshipData.ThrustMaxSpeed);
     }
 
@@ -75,5 +101,6 @@ public class PlayerController : MonoBehaviour
         _zRotation -= steeringInput * spaceshipData.SteeringSpeed * Time.deltaTime;
         _transform.rotation = Quaternion.Euler(Vector3.forward * _zRotation);
     }
+    #endregion
     #endregion
 }

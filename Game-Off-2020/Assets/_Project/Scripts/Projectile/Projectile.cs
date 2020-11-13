@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
         _transform = transform;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         Invoke("DestroyProjectile", lifeTime);
     }
@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
 
     private void DestroyProjectile()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 }

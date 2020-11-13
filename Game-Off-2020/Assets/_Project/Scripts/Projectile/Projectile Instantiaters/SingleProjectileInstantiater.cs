@@ -16,6 +16,6 @@ public class SingleProjectileInstantiater : ProjectileInstantiater
 
     public override void Instantiate()
     {
-        GameObject.Instantiate(prefab, position, rotation);
+        ObjectPooler.Instantiate(prefab, position, rotation);
     }
 }

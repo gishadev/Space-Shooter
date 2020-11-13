@@ -28,7 +28,7 @@ public class BurstProjectileInstantiater : ProjectileInstantiater
             float zProjOffset = startRot.eulerAngles.z + spreading * i;
             Quaternion newRot = Quaternion.Euler(Vector3.forward * zProjOffset);
 
-            GameObject.Instantiate(prefab, position, newRot);
+            ObjectPooler.Instantiate(prefab, position, newRot);
         }
     }
 }
