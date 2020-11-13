@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 
     float _zRotation;
 
-    public float ThrustInput { get => _controls.Player.Thrust.ReadValue<float>(); }
-    public float SteeringInput { get => _controls.Player.Steering.ReadValue<float>(); }
+    public float ThrustInput => _controls.Player.Thrust.ReadValue<float>();
+    public float SteeringInput => _controls.Player.Steering.ReadValue<float>();
 
     PlayerInput _controls;
     Rigidbody2D _rb;
