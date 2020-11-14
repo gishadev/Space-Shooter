@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceGame.Movement
+namespace SpaceGame.ReflectMovement
 {
     public class ReflectTarget : MonoBehaviour
     {
@@ -11,12 +11,12 @@ namespace SpaceGame.Movement
             _transform = transform;
         }
 
-        private void LateUpdate()
+        private void Update()
         {
-            HandleMovement(_transform);
-        }
+            if (ReflectHandler.IsInView(_transform.position))
+                return;
 
-        private void HandleMovement(Transform trans)
-        => trans.position = ReflectHandler.IsInView(trans.position) ? trans.position : ReflectHandler.GetReflectedPosOf(trans.position);
+            _transform.position = ReflectHandler.GetReflectedPosOf(_transform.position);
+        }
     }
 }

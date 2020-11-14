@@ -64,6 +64,7 @@ namespace SpaceGame.Player
         }
 
         #region Player Actions
+
         #region Shoot
         private void OnShoot(InputAction.CallbackContext ctx)
         {

@@ -2,7 +2,7 @@
 
 namespace SpaceGame.Player
 {
-    [CreateAssetMenu(fileName = "Player Spaceship Data", menuName = "Scriptable Objects/Game/Create Player Spaceship Data", order = 1)]
+    [CreateAssetMenu(fileName = "PlayerSpaceshipData", menuName = "Scriptable Objects/Game/Create Player Spaceship Data", order = 1)]
     public class PlayerSpaceshipData : ScriptableObject
     {
         [Header("Movement")]

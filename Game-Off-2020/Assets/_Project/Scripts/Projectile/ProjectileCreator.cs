@@ -2,9 +2,7 @@
 {
     public static class ProjectileCreator
     {
-        public static void CreateProjectile(ProjectileInstantiator instantiater)
-        {
-            instantiater.Instantiate();
-        }
+        public static void CreateProjectile(ProjectileInstantiator instantiator) 
+            => instantiator.Instantiate();
     }
 }
