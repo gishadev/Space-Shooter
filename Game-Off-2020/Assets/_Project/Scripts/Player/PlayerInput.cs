@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @PlayerInput : IInputActionCollection, IDisposable
+namespace SpaceGame.Player
 {
-    public InputActionAsset asset { get; }
-    public @PlayerInput()
+    public class @PlayerInput : IInputActionCollection, IDisposable
     {
-        asset = InputActionAsset.FromJson(@"{
+        public InputActionAsset asset { get; }
+        public @PlayerInput()
+        {
+            asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
@@ -203,109 +205,110 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
-        m_Player_Thrust = m_Player.FindAction("Thrust", throwIfNotFound: true);
-        m_Player_Steering = m_Player.FindAction("Steering", throwIfNotFound: true);
-    }
+            // Player
+            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+            m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+            m_Player_Thrust = m_Player.FindAction("Thrust", throwIfNotFound: true);
+            m_Player_Steering = m_Player.FindAction("Steering", throwIfNotFound: true);
+        }
 
-    public void Dispose()
-    {
-        UnityEngine.Object.Destroy(asset);
-    }
-
-    public InputBinding? bindingMask
-    {
-        get => asset.bindingMask;
-        set => asset.bindingMask = value;
-    }
-
-    public ReadOnlyArray<InputDevice>? devices
-    {
-        get => asset.devices;
-        set => asset.devices = value;
-    }
-
-    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
-
-    public bool Contains(InputAction action)
-    {
-        return asset.Contains(action);
-    }
-
-    public IEnumerator<InputAction> GetEnumerator()
-    {
-        return asset.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    public void Enable()
-    {
-        asset.Enable();
-    }
-
-    public void Disable()
-    {
-        asset.Disable();
-    }
-
-    // Player
-    private readonly InputActionMap m_Player;
-    private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Shoot;
-    private readonly InputAction m_Player_Thrust;
-    private readonly InputAction m_Player_Steering;
-    public struct PlayerActions
-    {
-        private @PlayerInput m_Wrapper;
-        public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
-        public InputAction @Thrust => m_Wrapper.m_Player_Thrust;
-        public InputAction @Steering => m_Wrapper.m_Player_Steering;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerActions instance)
+        public void Dispose()
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            UnityEngine.Object.Destroy(asset);
+        }
+
+        public InputBinding? bindingMask
+        {
+            get => asset.bindingMask;
+            set => asset.bindingMask = value;
+        }
+
+        public ReadOnlyArray<InputDevice>? devices
+        {
+            get => asset.devices;
+            set => asset.devices = value;
+        }
+
+        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+        public bool Contains(InputAction action)
+        {
+            return asset.Contains(action);
+        }
+
+        public IEnumerator<InputAction> GetEnumerator()
+        {
+            return asset.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Enable()
+        {
+            asset.Enable();
+        }
+
+        public void Disable()
+        {
+            asset.Disable();
+        }
+
+        // Player
+        private readonly InputActionMap m_Player;
+        private IPlayerActions m_PlayerActionsCallbackInterface;
+        private readonly InputAction m_Player_Shoot;
+        private readonly InputAction m_Player_Thrust;
+        private readonly InputAction m_Player_Steering;
+        public struct PlayerActions
+        {
+            private @PlayerInput m_Wrapper;
+            public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+            public InputAction @Thrust => m_Wrapper.m_Player_Thrust;
+            public InputAction @Steering => m_Wrapper.m_Player_Steering;
+            public InputActionMap Get() { return m_Wrapper.m_Player; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+            public void SetCallbacks(IPlayerActions instance)
             {
-                @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Thrust.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
-                @Thrust.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
-                @Thrust.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
-                @Steering.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
-                @Steering.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
-                @Steering.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
-            }
-            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Shoot.started += instance.OnShoot;
-                @Shoot.performed += instance.OnShoot;
-                @Shoot.canceled += instance.OnShoot;
-                @Thrust.started += instance.OnThrust;
-                @Thrust.performed += instance.OnThrust;
-                @Thrust.canceled += instance.OnThrust;
-                @Steering.started += instance.OnSteering;
-                @Steering.performed += instance.OnSteering;
-                @Steering.canceled += instance.OnSteering;
+                if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+                {
+                    @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                    @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                    @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                    @Thrust.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
+                    @Thrust.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
+                    @Thrust.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
+                    @Steering.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
+                    @Steering.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
+                    @Steering.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
+                }
+                m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Shoot.started += instance.OnShoot;
+                    @Shoot.performed += instance.OnShoot;
+                    @Shoot.canceled += instance.OnShoot;
+                    @Thrust.started += instance.OnThrust;
+                    @Thrust.performed += instance.OnThrust;
+                    @Thrust.canceled += instance.OnThrust;
+                    @Steering.started += instance.OnSteering;
+                    @Steering.performed += instance.OnSteering;
+                    @Steering.canceled += instance.OnSteering;
+                }
             }
         }
-    }
-    public PlayerActions @Player => new PlayerActions(this);
-    public interface IPlayerActions
-    {
-        void OnShoot(InputAction.CallbackContext context);
-        void OnThrust(InputAction.CallbackContext context);
-        void OnSteering(InputAction.CallbackContext context);
+        public PlayerActions @Player => new PlayerActions(this);
+        public interface IPlayerActions
+        {
+            void OnShoot(InputAction.CallbackContext context);
+            void OnThrust(InputAction.CallbackContext context);
+            void OnSteering(InputAction.CallbackContext context);
+        }
     }
 }

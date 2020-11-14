@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 
-public class ReflectTarget : MonoBehaviour
+namespace SpaceGame.Movement
 {
-    private Transform _transform;
-
-    private void Awake()
+    public class ReflectTarget : MonoBehaviour
     {
-        _transform = transform;
-    }
+        private Transform _transform;
 
-    private void LateUpdate()
-    {
-        HandleMovement(_transform);
-    }
+        private void Awake()
+        {
+            _transform = transform;
+        }
 
-    private void HandleMovement(Transform trans)
-    => trans.position = ReflectHandler.IsInView(trans.position) ? trans.position : ReflectHandler.GetReflectedPosOf(trans.position);
+        private void LateUpdate()
+        {
+            HandleMovement(_transform);
+        }
+
+        private void HandleMovement(Transform trans)
+        => trans.position = ReflectHandler.IsInView(trans.position) ? trans.position : ReflectHandler.GetReflectedPosOf(trans.position);
+    }
 }

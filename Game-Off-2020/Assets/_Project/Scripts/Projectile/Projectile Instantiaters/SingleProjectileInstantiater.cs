@@ -1,21 +1,25 @@
-﻿using UnityEngine;
+﻿using SpaceGame.Optimisation;
+using UnityEngine;
 
-public class SingleProjectileInstantiater : ProjectileInstantiater
+namespace SpaceGame.Projectile
 {
-    private GameObject prefab;
-    private Vector3 position;
-    private Quaternion rotation;
-
-    public SingleProjectileInstantiater(
-        GameObject _prefab, Vector3 _position, Quaternion _rotation)
+    public class SingleProjectileInstantiater : ProjectileInstantiator
     {
-        prefab = _prefab;
-        position = _position;
-        rotation = _rotation;
-    }
+        private GameObject prefab;
+        private Vector3 position;
+        private Quaternion rotation;
 
-    public override void Instantiate()
-    {
-        ObjectPooler.Instantiate(prefab, position, rotation);
+        public SingleProjectileInstantiater(
+            GameObject _prefab, Vector3 _position, Quaternion _rotation)
+        {
+            prefab = _prefab;
+            position = _position;
+            rotation = _rotation;
+        }
+
+        public override void Instantiate()
+        {
+            ObjectPooler.Instantiate(prefab, position, rotation);
+        }
     }
 }

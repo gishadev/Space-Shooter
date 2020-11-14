@@ -1,4 +1,7 @@
-﻿public abstract class ProjectileInstantiater
+﻿namespace SpaceGame.Projectile
 {
-    public abstract void Instantiate();
+    public abstract class ProjectileInstantiator
+    {
+        public abstract void Instantiate();
+    }
 }

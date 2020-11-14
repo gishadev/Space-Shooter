@@ -15,5 +15,5 @@ MonoBehaviour:
   thrustAccelerationSpeed: 5
   thrustMaxSpeed: 18
   steeringSpeed: 150
-  secondsBtwShots: 0.1
+  secondsBtwShots: 0.05
   projectilePrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}

@@ -1,7 +1,10 @@
-﻿public static class ProjectileCreator
+﻿namespace SpaceGame.Projectile
 {
-    public static void CreateProjectile(ProjectileInstantiater instantiater)
+    public static class ProjectileCreator
     {
-        instantiater.Instantiate();
+        public static void CreateProjectile(ProjectileInstantiator instantiater)
+        {
+            instantiater.Instantiate();
+        }
     }
 }
