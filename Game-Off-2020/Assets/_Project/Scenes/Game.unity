@@ -409,8 +409,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesToSpawn:
   - {fileID: 11400000, guid: 5b39ef464d783e14399def22fb85c639, type: 2}
-  checkDelayInSeconds: 4.5
-  spawnTimeInSeconds: 3
+  checkDelayInSeconds: 3.5
+  spawnTimeInSeconds: 2
 --- !u!1 &1473421261
 GameObject:
   m_ObjectHideFlags: 0
