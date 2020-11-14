@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 798538863313329584}
   - component: {fileID: 8599633519877753263}
   - component: {fileID: 7083638076283743859}
-  m_Layer: 0
+  - component: {fileID: -4404636566187571582}
+  m_Layer: 8
   m_Name: Asteroid
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -112,3 +113,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1eaadb4c1986ed41bfdd6e9a07cff1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4404636566187571582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5813515461561177155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8340786e2407148a2678ee365b53d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  flySpeed: 2.75
+  fullAccelerationTime: 5

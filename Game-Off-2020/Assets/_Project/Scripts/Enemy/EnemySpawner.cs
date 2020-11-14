@@ -3,7 +3,7 @@ using SpaceGame.World;
 using System.Collections;
 using UnityEngine;
 
-namespace SpaceGame.Enemy
+namespace SpaceGame.EnemyNamespace
 {
     public class EnemySpawner : MonoBehaviour
     {
@@ -24,7 +24,7 @@ namespace SpaceGame.Enemy
             if (spawnTimeInSeconds <= 0) spawnTimeInSeconds = 0.01f;
         }
 
-        private IEnumerator SpawnCheckCoroutine()
+        IEnumerator SpawnCheckCoroutine()
         {
             while (true)
             {
@@ -49,11 +49,13 @@ namespace SpaceGame.Enemy
 
                 spawnedEnemy.transform.localScale = startScale * progress;
 
-                color.a = progress; 
+                color.a = progress;
                 sr.color = color;
 
                 yield return null;
             }
+
+            spawnedEnemy.GetComponent<Enemy>().Init();
         }
 
         GameObject SpawnEnemy()

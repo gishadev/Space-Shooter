@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace SpaceGame.Player
 {
@@ -66,14 +67,14 @@ namespace SpaceGame.Player
         #region Player Actions
 
         #region Shoot
-        private void OnShoot(InputAction.CallbackContext ctx)
+        void OnShoot(InputAction.CallbackContext ctx)
         {
             if (ctx.performed)
                 IsShootingInput = true;
             else if (ctx.canceled)
                 IsShootingInput = false;
         }
-        private void Shoot()
+        void Shoot()
         {
             var instantiater = new BurstProjectileInstantiator(
                 spaceshipData.projectilePrefab,
@@ -84,7 +85,7 @@ namespace SpaceGame.Player
 
             _lastShootTime = Time.time + spaceshipData.secondsBtwShots;
         }
-        private bool IsReadyForShoot() => IsShootingInput && _lastShootTime - Time.time < 0;
+        bool IsReadyForShoot() => IsShootingInput && _lastShootTime - Time.time < 0;
         #endregion
 
         #region Movement
@@ -107,5 +108,15 @@ namespace SpaceGame.Player
         }
         #endregion
         #endregion
+
+        void Die()
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Enemy")) Die();
+        }
     }
 }

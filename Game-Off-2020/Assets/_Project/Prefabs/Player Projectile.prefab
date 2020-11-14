@@ -115,6 +115,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flySpeed: 16
   lifeTime: 0.65
+  damage: 1
+  rayLength: 0.15
+  whatIsSolid:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &1633858446514825201
 MonoBehaviour:
   m_ObjectHideFlags: 0

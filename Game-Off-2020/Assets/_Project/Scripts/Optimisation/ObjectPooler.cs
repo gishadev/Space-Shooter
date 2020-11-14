@@ -4,26 +4,34 @@ using UnityEngine;
 
 namespace SpaceGame.Optimisation
 {
-    public static class ObjectPooler
+    public class ObjectPooler : MonoBehaviour
     {
         private static Dictionary<int, List<GameObject>> objectsByPrefabId;
         private static Dictionary<int, Transform> parentByPrefabId;
+
+        void Start()
+        {
+            Init();
+        }
+
+        void Init()
+        {
+            objectsByPrefabId = new Dictionary<int, List<GameObject>>();
+            parentByPrefabId = new Dictionary<int, Transform>();
+        }
 
         public static GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation)
         {
             int prefabId = prefab.GetInstanceID();
 
-            if (objectsByPrefabId == null) objectsByPrefabId = new Dictionary<int, List<GameObject>>();
-            if (parentByPrefabId == null) parentByPrefabId = new Dictionary<int, Transform>();
-
             ////////////////////////////////////// Old Object Activating //////////////////////////////////////
             ///
-            List<GameObject> objectsOfPrefabId;
-            if (objectsByPrefabId.TryGetValue(prefabId, out objectsOfPrefabId))
+            List<GameObject> objectsList;
+            if (objectsByPrefabId.TryGetValue(prefabId, out objectsList))
             {
-                if (objectsOfPrefabId.Any(x => !x.activeInHierarchy))
+                if (objectsList.Any(x => !x.activeInHierarchy))
                 {
-                    GameObject firstActiveObject = objectsOfPrefabId.FirstOrDefault(x => !x.activeInHierarchy);
+                    GameObject firstActiveObject = objectsList.FirstOrDefault(x => !x.activeInHierarchy);
 
                     firstActiveObject.transform.position = position;
                     firstActiveObject.transform.rotation = rotation;
@@ -42,7 +50,7 @@ namespace SpaceGame.Optimisation
             ////////////////////////////////////// New Object Creating //////////////////////////////////////
             ///
             Transform parent = parentByPrefabId[prefabId];
-            
+
             GameObject createdObject = Object.Instantiate(prefab, position, rotation, parent);
             objectsByPrefabId[prefabId].Add(createdObject);
 
