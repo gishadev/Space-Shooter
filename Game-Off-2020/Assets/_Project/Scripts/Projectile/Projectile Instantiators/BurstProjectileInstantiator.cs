@@ -31,7 +31,7 @@ namespace SpaceGame.Projectile
                 float zProjOffset = startRot.eulerAngles.z + spreading * i;
                 Quaternion newRot = Quaternion.Euler(Vector3.forward * zProjOffset);
 
-                ObjectPooler.Instantiate(prefab, position, newRot);
+                PoolManager.Instantiate(prefab, position, newRot);
             }
         }
     }

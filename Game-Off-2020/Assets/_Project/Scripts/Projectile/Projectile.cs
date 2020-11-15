@@ -6,13 +6,13 @@ namespace SpaceGame.Projectile
     public class Projectile : MonoBehaviour
     {
         [Header("General")]
-        [SerializeField] private float flySpeed;
-        [SerializeField] private float lifeTime;
+        [SerializeField] private float flySpeed = default;
+        [SerializeField] private float lifeTime = default;
         [Header("Raycast")]
-        [SerializeField] private int damage;
-        [SerializeField] private float rayLength;
+        [SerializeField] private int damage = default;
+        [SerializeField] private float rayLength = default;
         [Header("Layer Mask")]
-        [SerializeField] private LayerMask whatIsSolid;
+        [SerializeField] private LayerMask whatIsSolid = default;
 
 
         Transform _transform;

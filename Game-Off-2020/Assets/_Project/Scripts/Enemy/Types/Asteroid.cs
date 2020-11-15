@@ -6,11 +6,11 @@ namespace SpaceGame.EnemyNamespace
     public class Asteroid : Enemy
     {
         [Header("General")]
-        [SerializeField] private int maxHealth;
+        [SerializeField] private int maxHealth = default;
 
         [Header("Movement")]
-        [SerializeField] private float flySpeed;
-        [SerializeField] private float fullAccelerationTime;
+        [SerializeField] private float flySpeed = default;
+        [SerializeField] private float fullAccelerationTime = default;
 
         Vector2 _dir;
         bool _isInit;

@@ -19,7 +19,7 @@ namespace SpaceGame.Projectile
 
         public override void Instantiate()
         {
-            ObjectPooler.Instantiate(prefab, position, rotation);
+            PoolManager.Instantiate(prefab, position, rotation);
         }
     }
 }

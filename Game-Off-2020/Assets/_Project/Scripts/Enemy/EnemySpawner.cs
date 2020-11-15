@@ -8,10 +8,10 @@ namespace SpaceGame.EnemyNamespace
     public class EnemySpawner : MonoBehaviour
     {
         [Header("Data")]
-        [SerializeField] private EnemySpawnData[] enemiesToSpawn;
+        [SerializeField] private EnemySpawnData[] enemiesToSpawn = default;
         [Header("Timings")]
-        [SerializeField] private float checkDelayInSeconds;
-        [SerializeField] private float spawnTimeInSeconds;
+        [SerializeField] private float checkDelayInSeconds = default;
+        [SerializeField] private float spawnTimeInSeconds = default;
 
         private void Start()
         {
@@ -68,7 +68,7 @@ namespace SpaceGame.EnemyNamespace
                 Random.Range(WorldBounds.MaxY, -WorldBounds.MaxY));
             Quaternion rotation = prefab.transform.rotation;
 
-            return ObjectPooler.Instantiate(prefab, position, rotation);
+            return PoolManager.Instantiate(prefab, position, rotation);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace SpaceGame.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private PlayerSpaceshipData spaceshipData;
+        [SerializeField] private PlayerSpaceshipData spaceshipData = default;
 
         float _zRotation, _lastShootTime;
 
