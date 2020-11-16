@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SpaceGame.Core;
+using System.Collections;
 using UnityEngine;
 
 namespace SpaceGame.EnemyNamespace
@@ -52,7 +53,11 @@ namespace SpaceGame.EnemyNamespace
             if (Health <= 0) Die();
         }
 
-        public override void Die() => gameObject.SetActive(false);
+        public override void Die()
+        {
+            ScoreManager.AddScore(25);
+            gameObject.SetActive(false);
+        }
         #endregion
 
         IEnumerator AccelerationCoroutine()

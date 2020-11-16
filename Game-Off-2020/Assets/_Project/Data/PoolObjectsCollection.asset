@@ -31,4 +31,4 @@ MonoBehaviour:
     - {fileID: 7226457425575714504, guid: 29e0b386cc8c86340a8c01c53105b0e2, type: 3}
     - {fileID: 4449034353842831790, guid: 9a6b8e436a9460c46b2c550498c8690f, type: 3}
     - {fileID: 7864150024842351764, guid: 41792a1f2f16f4d46ac71a1700189a6a, type: 3}
-    initCount: 4
+    initCount: 8

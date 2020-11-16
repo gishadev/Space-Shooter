@@ -1,4 +1,5 @@
 ﻿using SpaceGame.Projectile;
+using SpaceGame.Core;
 using System.Collections;
 using UnityEngine;
 
@@ -50,6 +51,7 @@ namespace SpaceGame.EnemyNamespace
 
         public override void Die()
         {
+            ScoreManager.AddScore(50);
             gameObject.SetActive(false);
         }
 
