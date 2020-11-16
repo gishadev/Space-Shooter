@@ -5,11 +5,16 @@ namespace SpaceGame.Optimisation
 {
     public class PoolSetup : MonoBehaviour
     {
-        [SerializeField] private List<PoolObject> poolObjects = new List<PoolObject>();
+        #region Singleton
+        public static PoolSetup Instance { get; private set; }
+        #endregion
+
+        public PoolObjectsCollection poolObjectsCollection;
 
         private void Awake()
         {
-            PoolManager.Init(poolObjects);
+            Instance = this;
+            PoolManager.Init(poolObjectsCollection.PoolObjects);
         }
     }
 }

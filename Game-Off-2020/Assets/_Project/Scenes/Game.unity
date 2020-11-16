@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 791759240}
   - component: {fileID: 791759241}
   m_Layer: 0
-  m_Name: Pooler
+  m_Name: Pool Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,15 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9facfc22500b12c449e99bbd0e871dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolObjects:
-  - prefab: {fileID: 5813515461561177155, guid: 00be37e88a8378544b7df91e41586554, type: 3}
-    initCount: 3
-  - prefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
-    initCount: 30
-  - prefab: {fileID: 7917612184582156542, guid: 327ab1241ba2b3e41b41bcd009ac36f2, type: 3}
-    initCount: 3
-  - prefab: {fileID: 7098100801874879487, guid: 5d48bb8937fd24e40944410d9630db80, type: 3}
-    initCount: 3
+  poolObjectsCollection: {fileID: 11400000, guid: dcaf7eb158f13504b9161f2fdd9d1d61, type: 2}
 --- !u!1 &1200856560
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = System.Random;
 
 namespace SpaceGame.Optimisation
 {
@@ -9,20 +10,20 @@ namespace SpaceGame.Optimisation
         private static Dictionary<PoolObject, List<GameObject>> objectsByPoolObject;
         private static Dictionary<PoolObject, Transform> parentByPoolObject;
 
-        private static List<PoolObject> poolObjects;
+        private static List<PoolObject> _poolObjects;
 
         public static void Init(List<PoolObject> _poolObjects)
         {
             objectsByPoolObject = new Dictionary<PoolObject, List<GameObject>>();
             parentByPoolObject = new Dictionary<PoolObject, Transform>();
 
-            poolObjects = _poolObjects;
-            PoolManager.InitializePools(poolObjects);
+            PoolManager._poolObjects = _poolObjects;
+            PoolManager.InitializePools(PoolManager._poolObjects);
         }
 
         public static GameObject Instantiate(GameObject prefab, Vector3 position, Quaternion rotation)
         {
-            PoolObject po = GetPoolObjectFromPrefab(prefab);
+            PoolObject po = GetOrCreatePoolObject(prefab);
 
             List<GameObject> sceneObjectsList;
             if (objectsByPoolObject.TryGetValue(po, out sceneObjectsList))
@@ -54,7 +55,7 @@ namespace SpaceGame.Optimisation
             }
         }
 
-        #region Private Methods
+        #region Object Instantiating
         private static GameObject InstantiateNewObject(GameObject prefab, Vector3 position, Quaternion rotation, PoolObject po)
         {
             Transform parent = parentByPoolObject[po];
@@ -67,27 +68,39 @@ namespace SpaceGame.Optimisation
 
         private static GameObject ActivateAvailableObject(Vector3 position, Quaternion rotation, List<GameObject> sceneObjectsList)
         {
-            GameObject firstActiveObject = sceneObjectsList.FirstOrDefault(x => !x.activeInHierarchy);
+            GameObject objectToActivate;
+            if (sceneObjectsList.Count > 1)
+            {
+                List<GameObject> unactiveObjects = sceneObjectsList.Where(x => !x.activeInHierarchy).ToList();
+                objectToActivate = unactiveObjects.ElementAtOrDefault(new Random().Next() % unactiveObjects.Count());
+            }
+            else 
+                objectToActivate = sceneObjectsList.FirstOrDefault(x => !x.activeInHierarchy);
 
-            firstActiveObject.transform.position = position;
-            firstActiveObject.transform.rotation = rotation;
+            objectToActivate.transform.position = position;
+            objectToActivate.transform.rotation = rotation;
 
-            firstActiveObject.SetActive(true);
+            objectToActivate.SetActive(true);
 
-            return firstActiveObject;
+            return objectToActivate;
         }
+        #endregion
 
-        private static PoolObject GetPoolObjectFromPrefab(GameObject prefab)
+        private static PoolObject GetOrCreatePoolObject(GameObject prefab)
         {
             int prefabId = prefab.GetInstanceID();
-            int index = poolObjects.FindIndex(x => x.InstanceId.Equals(prefabId));
+            int index = _poolObjects.FindIndex(x => x.InstanceIds.Contains(prefabId));
+
             if (index == -1)
             {
-                Debug.LogError("Prefab wasn't found in poolObjects collection.");
-                return null;
+                PoolObject newPO = new PoolObject(prefab);
+                PoolSetup.Instance.poolObjectsCollection.Add(newPO);
+                index = _poolObjects.Count - 1;
+
+                Debug.LogFormat("New Pool Object was created with name {0}.", newPO.Name);
             }
 
-            return poolObjects[index];
+            return _poolObjects[index];
         }
 
         private static void CreateParent(PoolObject poKey)
@@ -97,6 +110,6 @@ namespace SpaceGame.Optimisation
 
             parentByPoolObject.Add(poKey, parent.transform);
         }
-        #endregion
+
     }
 }
