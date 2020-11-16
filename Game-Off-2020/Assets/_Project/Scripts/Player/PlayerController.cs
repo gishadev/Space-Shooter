@@ -76,12 +76,12 @@ namespace SpaceGame.Player
         }
         void Shoot()
         {
-            var instantiater = new BurstProjectileInstantiator(
+            ProjectileCreator.CreateProjectile(
                 spaceshipData.projectilePrefab,
                 _shotPos.position,
-                _transform.rotation, 15, 5f);
-
-            ProjectileCreator.CreateProjectile(instantiater);
+                _shotPos.rotation,
+                15,
+                5f);
 
             _lastShootTime = Time.time + spaceshipData.secondsBtwShots;
         }

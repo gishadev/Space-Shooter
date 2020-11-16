@@ -35,13 +35,15 @@ namespace SpaceGame.EnemyNamespace
 
         IEnumerator SpawningCoroutine()
         {
-            GameObject spawnedEnemy = SpawnEnemy();
+            var spawnedEnemy = SpawnEnemy().GetComponent<Enemy>();
 
-            float progress = 0;
+            float progress = 0f;
 
-            Vector3 startScale = spawnedEnemy.transform.localScale;
-            SpriteRenderer sr = spawnedEnemy.GetComponent<SpriteRenderer>();
-            Color color = new Color(1f, 1f, 1f, 0f);
+            var startScale = spawnedEnemy.transform.localScale;
+            var spriteRenderer = spawnedEnemy.GetComponent<SpriteRenderer>();
+            var color = new Color(1f, 1f, 1f, 0f);
+
+            spawnedEnemy.OnStartSpawning();
 
             while (progress < 1f)
             {
@@ -50,12 +52,12 @@ namespace SpaceGame.EnemyNamespace
                 spawnedEnemy.transform.localScale = startScale * progress;
 
                 color.a = progress;
-                sr.color = color;
+                spriteRenderer.color = color;
 
                 yield return null;
             }
 
-            spawnedEnemy.GetComponent<Enemy>().Init();
+            spawnedEnemy.OnSpawn();
         }
 
         GameObject SpawnEnemy()

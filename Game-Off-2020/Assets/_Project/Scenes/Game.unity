@@ -254,6 +254,10 @@ MonoBehaviour:
     initCount: 3
   - prefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
     initCount: 30
+  - prefab: {fileID: 7917612184582156542, guid: 327ab1241ba2b3e41b41bcd009ac36f2, type: 3}
+    initCount: 3
+  - prefab: {fileID: 7098100801874879487, guid: 5d48bb8937fd24e40944410d9630db80, type: 3}
+    initCount: 3
 --- !u!1 &1200856560
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesToSpawn:
   - {fileID: 11400000, guid: 5b39ef464d783e14399def22fb85c639, type: 2}
+  - {fileID: 11400000, guid: e65a56e90330e02438155b647060534a, type: 2}
   checkDelayInSeconds: 3.5
   spawnTimeInSeconds: 2
 --- !u!1 &1473421261
@@ -728,6 +733,14 @@ PrefabInstance:
     - target: {fileID: 6608248911941925463, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6608248911941925463, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059227228292144686, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c339d6076797cc94ab722069c8374ea1, type: 3}

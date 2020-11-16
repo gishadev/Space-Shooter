@@ -5,15 +5,11 @@ namespace SpaceGame.EnemyNamespace
 {
     public class Asteroid : Enemy
     {
-        [Header("General")]
-        [SerializeField] private int maxHealth = default;
-
-        [Header("Movement")]
+        [Header("Asteroid")]
         [SerializeField] private float flySpeed = default;
         [SerializeField] private float fullAccelerationTime = default;
 
         Vector2 _dir;
-        bool _isInit;
 
         public float FlySpeed
         {
@@ -22,38 +18,31 @@ namespace SpaceGame.EnemyNamespace
         }
         float _speed;
 
-        public int Health
-        {
-            get { return _health; }
-            set { _health = Mathf.Clamp(value, 0, maxHealth); }
-        }
-        int _health;
-
         Transform _transform;
-        Collider2D _collider;
 
         private void Awake()
         {
             _transform = transform;
-            _collider = GetComponent<Collider2D>();
-            _collider.enabled = false;
         }
 
         private void Update()
         {
-            if (!_isInit) return;
-
             _transform.Translate(_dir * FlySpeed * Time.deltaTime);
         }
 
-        #region Enemy
-        public override void Init()
+        private void OnDisable()
         {
-            _isInit = true;
-            Health = maxHealth;
+            StopAllCoroutines();
+            FlySpeed = 0f;
+        }
+
+        #region Enemy
+        public override void OnSpawn()
+        {
+            base.OnSpawn();
+            RestoreHealth();
             _dir = GetRandomDirection();
             StartCoroutine(AccelerationCoroutine());
-            _collider.enabled = true;
         }
 
         public override void TakeDamage(int dmg)
@@ -64,16 +53,8 @@ namespace SpaceGame.EnemyNamespace
         }
 
         public override void Die() => gameObject.SetActive(false);
-
-        private void OnDisable()
-        {
-            StopAllCoroutines();
-            _collider.enabled = false;
-            FlySpeed = 0f;
-        }
         #endregion
 
-        #region Movement
         IEnumerator AccelerationCoroutine()
         {
             float step = flySpeed * Time.deltaTime / fullAccelerationTime;
@@ -89,6 +70,5 @@ namespace SpaceGame.EnemyNamespace
             float deg = Random.Range(0f, 2 * Mathf.PI) * Mathf.Rad2Deg;
             return new Vector2(Mathf.Cos(deg), Mathf.Sin(deg)).normalized;
         }
-        #endregion
     }
 }
