@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace SpaceGame.EnemyNamespace
+namespace SpaceGame.EnemyLogic
 {
     public abstract class Enemy : MonoBehaviour
     {

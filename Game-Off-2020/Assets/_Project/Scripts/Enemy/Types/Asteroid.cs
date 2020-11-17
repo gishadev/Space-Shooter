@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace SpaceGame.EnemyNamespace
+namespace SpaceGame.EnemyLogic
 {
     public class Asteroid : Enemy
     {

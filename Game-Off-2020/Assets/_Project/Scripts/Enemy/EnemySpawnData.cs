@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceGame.EnemyNamespace
+namespace SpaceGame.EnemyLogic
 {
     [CreateAssetMenu(fileName = "EnemySpawnData", menuName = "Scriptable Objects/Game/Create Enemy Spawn Data", order = 2)]
     public class EnemySpawnData : ScriptableObject

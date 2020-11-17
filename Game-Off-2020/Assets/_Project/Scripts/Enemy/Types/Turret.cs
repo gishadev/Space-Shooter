@@ -1,9 +1,8 @@
-﻿using SpaceGame.Projectile;
-using SpaceGame.Core;
+﻿using SpaceGame.Core;
 using System.Collections;
 using UnityEngine;
 
-namespace SpaceGame.EnemyNamespace
+namespace SpaceGame.EnemyLogic
 {
     public class Turret : Enemy
     {
@@ -12,8 +11,6 @@ namespace SpaceGame.EnemyNamespace
         [SerializeField] private float shootDelay = default;
 
         Transform _transform, _target;
-
-
 
         private void Awake()
         {

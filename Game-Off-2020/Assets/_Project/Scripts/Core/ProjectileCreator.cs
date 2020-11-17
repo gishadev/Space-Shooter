@@ -1,7 +1,7 @@
 ﻿using SpaceGame.Optimisation;
 using UnityEngine;
 
-namespace SpaceGame.Projectile
+namespace SpaceGame.Core
 {
     public static class ProjectileCreator
     {

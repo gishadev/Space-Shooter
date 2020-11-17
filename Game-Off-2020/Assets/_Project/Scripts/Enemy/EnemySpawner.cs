@@ -3,7 +3,7 @@ using SpaceGame.World;
 using System.Collections;
 using UnityEngine;
 
-namespace SpaceGame.EnemyNamespace
+namespace SpaceGame.EnemyLogic
 {
     public class EnemySpawner : MonoBehaviour
     {

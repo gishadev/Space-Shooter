@@ -1,4 +1,4 @@
-﻿using SpaceGame.EnemyNamespace;
+﻿using SpaceGame.EnemyLogic;
 using UnityEngine;
 
 namespace SpaceGame.Projectile

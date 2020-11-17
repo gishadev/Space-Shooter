@@ -12,7 +12,7 @@ namespace SpaceGame.Core
             private set { _score = Mathf.Max(value, 0); }
         }
 
-        public static void Init()
+        public static void OnInitialize()
         {
             Score = 0;
         }

@@ -13,5 +13,10 @@ namespace SpaceGame.Optimisation
         {
             poolObjects.Add(item);
         }
+
+        public void Reset()
+        {
+            poolObjects.Clear();
+        }
     }
 }

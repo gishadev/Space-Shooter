@@ -1,8 +1,7 @@
-﻿using SpaceGame.Projectile;
+﻿using SpaceGame.Core;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace SpaceGame.Player
 {
@@ -111,7 +110,7 @@ namespace SpaceGame.Player
 
         void Die()
         {
-            SceneManager.LoadScene(0);
+            GameManager.Instance.ReloadLevel();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

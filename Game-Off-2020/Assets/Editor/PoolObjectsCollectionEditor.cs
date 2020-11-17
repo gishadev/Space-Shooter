@@ -1,5 +1,6 @@
 ﻿using SpaceGame.Optimisation;
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(PoolObjectsCollection))]
 public class PoolObjectsCollectionEditor : Editor
@@ -18,6 +19,9 @@ public class PoolObjectsCollectionEditor : Editor
     {
         serializedObject.Update();
         EditorGUILayout.PropertyField(_poolObjectsProp, true);
+
+        if (GUILayout.Button("Reset Collection"))
+            _collection.Reset();
 
         serializedObject.ApplyModifiedProperties();
     }
