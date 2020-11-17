@@ -22,7 +22,7 @@ MonoBehaviour:
     projSpreading: 0
   - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
     projCount: 2
-    projSpreading: 0.15
+    projSpreading: 5
   - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
     projCount: 3
-    projSpreading: 0.35
+    projSpreading: 5
