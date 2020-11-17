@@ -8,6 +8,7 @@ namespace SpaceGame.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private PlayerSpaceshipData spaceshipData = default;
+        public PlayerSpaceshipData SpaceshipData => spaceshipData;
 
         float _zRotation, _lastShootTime;
 
@@ -76,13 +77,13 @@ namespace SpaceGame.Player
         void Shoot()
         {
             ProjectileCreator.CreateProjectile(
-                spaceshipData.projectilePrefab,
+                SpaceshipData.ProjectilePrefab,
                 _shotPos.position,
                 _shotPos.rotation,
-                15,
-                5f);
+                SpaceshipData.ProjectileCount,
+                SpaceshipData.ProjectileSpreading);
 
-            _lastShootTime = Time.time + spaceshipData.secondsBtwShots;
+            _lastShootTime = Time.time + SpaceshipData.SecondsBtwShots;
         }
         bool IsReadyForShoot() => IsShootingInput && _lastShootTime - Time.time < 0;
         #endregion
@@ -93,8 +94,8 @@ namespace SpaceGame.Player
             if (thrustInput <= 0)
                 return;
 
-            var addVel = (Vector2)_transform.up * thrustInput * spaceshipData.ThrustAccelerationSpeed * Time.deltaTime;
-            _rb.velocity = Vector2.ClampMagnitude(_rb.velocity + addVel, spaceshipData.ThrustMaxSpeed);
+            var addVel = (Vector2)_transform.up * thrustInput * SpaceshipData.ThrustAccelerationSpeed * Time.deltaTime;
+            _rb.velocity = Vector2.ClampMagnitude(_rb.velocity + addVel, SpaceshipData.ThrustMaxSpeed);
         }
 
         private void PlayerSteering(float steeringInput)
@@ -102,20 +103,10 @@ namespace SpaceGame.Player
             if (steeringInput == 0)
                 return;
 
-            _zRotation -= steeringInput * spaceshipData.SteeringSpeed * Time.deltaTime;
+            _zRotation -= steeringInput * SpaceshipData.SteeringSpeed * Time.deltaTime;
             _transform.rotation = Quaternion.Euler(Vector3.forward * _zRotation);
         }
         #endregion
         #endregion
-
-        void Die()
-        {
-            GameManager.Instance.ReloadLevel();
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("Enemy")) Die();
-        }
     }
 }

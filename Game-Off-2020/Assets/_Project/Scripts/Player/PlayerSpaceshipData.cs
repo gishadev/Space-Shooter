@@ -6,16 +6,55 @@ namespace SpaceGame.Player
     public class PlayerSpaceshipData : ScriptableObject
     {
         [Header("Movement")]
-        [SerializeField] private float thrustAccelerationSpeed;
-        [SerializeField] private float thrustMaxSpeed;
-        [SerializeField] private float steeringSpeed;
+        [SerializeField] private float thrustAccelerationSpeed = default;
+        [SerializeField] private float thrustMaxSpeed = default;
+        [SerializeField] private float steeringSpeed = default;
 
+        [Header("Shooting General")]
+        [SerializeField] private float secondsBtwShots = default;
+
+        [Header("Levels")]
+        [SerializeField] private LevelData[] levels = default;
+
+        int _currentLevel;
+        public int LevelIndex
+        {
+            get => _currentLevel;
+            set { _currentLevel = Mathf.Clamp(value, 0, levels.Length - 1); }
+        }
+        public LevelData LevelData => levels[LevelIndex];
+
+        public float ThrustAccelerationSpeed => thrustAccelerationSpeed;
+        public float ThrustMaxSpeed => thrustMaxSpeed;
+        public float SteeringSpeed => steeringSpeed;
+
+        public float SecondsBtwShots => secondsBtwShots;
+
+        public GameObject ProjectilePrefab => LevelData.ProjPrefab;
+        public int ProjectileCount => LevelData.ProjCount;
+        public float ProjectileSpreading => LevelData.ProjSpreading;
+
+        private void OnValidate()
+        {
+            thrustAccelerationSpeed = Mathf.Max(0f, thrustAccelerationSpeed);
+            thrustMaxSpeed = Mathf.Max(0f, thrustMaxSpeed);
+            steeringSpeed = Mathf.Max(0f, steeringSpeed);
+
+            secondsBtwShots = Mathf.Max(0f, secondsBtwShots);
+        }
+    }
+
+
+    [System.Serializable]
+    public class LevelData
+    {
         [Header("Shooting")]
-        public float secondsBtwShots;
-        public GameObject projectilePrefab;
+        [SerializeField] private GameObject projPrefab = default;
+        [SerializeField] private int projCount = default;
+        [SerializeField] private float projSpreading = default;
 
-        public float ThrustAccelerationSpeed { get => thrustAccelerationSpeed; set => thrustAccelerationSpeed = Mathf.Max(value, 0); }
-        public float ThrustMaxSpeed { get => thrustMaxSpeed; set => thrustMaxSpeed = Mathf.Max(value, 0); }
-        public float SteeringSpeed { get => steeringSpeed; set => steeringSpeed = Mathf.Max(value, 0); }
+        public GameObject ProjPrefab => projPrefab;
+        public int ProjCount => projCount;
+        public float ProjSpreading => projSpreading;
     }
 }
