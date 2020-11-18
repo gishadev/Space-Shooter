@@ -50,6 +50,9 @@ namespace SpaceGame.EnemyLogic
         {
             ScoreManager.AddScore(50);
             gameObject.SetActive(false);
+
+            if (PowerUpDropper.IsDrop())
+                PowerUpDropper.Drop(_transform.position);
         }
 
         public override void TakeDamage(int dmg)

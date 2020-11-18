@@ -57,6 +57,9 @@ namespace SpaceGame.EnemyLogic
         {
             ScoreManager.AddScore(25);
             gameObject.SetActive(false);
+       
+            if (PowerUpDropper.IsDrop())
+                PowerUpDropper.Drop(_transform.position);
         }
         #endregion
 
