@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SpaceGame.UI;
+using UnityEngine;
 
 namespace SpaceGame.Core
 {
@@ -20,7 +21,7 @@ namespace SpaceGame.Core
         public static void AddScore(int n)
         {
             Score += n;
-            Debug.LogFormat("Now Score: <b><color=yellow>{0}</color></b>", Score);
+            UIManager.ScoreUI.UpdateScoreUI(Score);
         }
     }
 }
