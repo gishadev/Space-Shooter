@@ -57,7 +57,7 @@ namespace SpaceGame.EnemyLogic
         {
             ScoreManager.AddScore(25);
             gameObject.SetActive(false);
-       
+
             if (PowerUpDropper.IsDrop())
                 PowerUpDropper.Drop(_transform.position);
         }
@@ -73,10 +73,24 @@ namespace SpaceGame.EnemyLogic
             }
         }
 
-        Vector3 GetRandomDirection()
+        Vector2 GetRandomDirection()
         {
             float deg = Random.Range(0f, 2 * Mathf.PI) * Mathf.Rad2Deg;
             return new Vector2(Mathf.Cos(deg), Mathf.Sin(deg)).normalized;
+        }
+
+        Vector2 GetReflectDirection(Collider2D collider)
+        {
+            Vector2 dir = (collider.transform.position - _transform.position).normalized;
+            LayerMask enemyLayer = LayerMask.NameToLayer("Enemy");
+            RaycastHit2D hitInfo = Physics2D.Raycast(_transform.position, dir, 0.25f, 1 << enemyLayer);
+            
+            return Vector2.Reflect(dir, hitInfo.normal);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Enemy")) _dir = GetReflectDirection(other);
         }
     }
 }

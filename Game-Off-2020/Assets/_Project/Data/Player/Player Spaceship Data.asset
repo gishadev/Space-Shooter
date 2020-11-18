@@ -15,14 +15,20 @@ MonoBehaviour:
   thrustAccelerationSpeed: 5
   thrustMaxSpeed: 18
   steeringSpeed: 150
-  secondsBtwShots: 0.05
+  secondsBtwShots: 0.06
   levels:
   - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
     projCount: 1
     projSpreading: 0
   - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
     projCount: 2
-    projSpreading: 5
+    projSpreading: 4
   - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
     projCount: 3
-    projSpreading: 5
+    projSpreading: 4
+  - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
+    projCount: 4
+    projSpreading: 4
+  - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
+    projCount: 5
+    projSpreading: 4
