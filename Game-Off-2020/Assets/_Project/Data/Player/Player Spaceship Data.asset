@@ -32,3 +32,12 @@ MonoBehaviour:
   - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
     projCount: 5
     projSpreading: 4
+  - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
+    projCount: 6
+    projSpreading: 4
+  - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
+    projCount: 7
+    projSpreading: 4
+  - projPrefab: {fileID: 5168776181151870406, guid: 7895254f77695554f85d93cb533c3a9f, type: 3}
+    projCount: 8
+    projSpreading: 4

@@ -32,3 +32,15 @@ MonoBehaviour:
     - {fileID: 4449034353842831790, guid: 9a6b8e436a9460c46b2c550498c8690f, type: 3}
     - {fileID: 7864150024842351764, guid: 41792a1f2f16f4d46ac71a1700189a6a, type: 3}
     initCount: 8
+  - name: LevelUp PU
+    prefabs:
+    - {fileID: 6311247567566240942, guid: 3996ff046781377468e75233d741a612, type: 3}
+    initCount: 2
+  - name: ForceField PU
+    prefabs:
+    - {fileID: 4973361986911887048, guid: ab4fc601584ace049b6f1326926279f1, type: 3}
+    initCount: 2
+  - name: AddScore PU
+    prefabs:
+    - {fileID: 1102527521053008084, guid: d5a8245041c3a474eb7d3f0f9ffc6a0e, type: 3}
+    initCount: 2

@@ -9,6 +9,8 @@ namespace SpaceGame.Player
         [Header("Power Ups Influence")]
         [SerializeField] private GameObject forceField = default;
 
+        public bool IsImmortal { get; private set; } = false;
+
         Collider2D _collider;
         PlayerSpaceshipData _spaceshipData;
 
@@ -28,15 +30,15 @@ namespace SpaceGame.Player
 
         IEnumerator ForceField(float affectTime)
         {
-            _collider.enabled = false;
+            IsImmortal = true;
             forceField.SetActive(true);
             yield return new WaitForSeconds(affectTime);
-            _collider.enabled = true;
+            IsImmortal = false;
             forceField.SetActive(false);
         }
         #endregion
 
-        #region LevelUp
+        #region Level Up
         public void LevelUp()
         {
             _spaceshipData.LevelIndex++;
@@ -51,7 +53,7 @@ namespace SpaceGame.Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Enemy")) Die();
+            if (other.CompareTag("Enemy") && !IsImmortal) Die();
         }
     }
 }

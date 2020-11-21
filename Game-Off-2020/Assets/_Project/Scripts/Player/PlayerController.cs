@@ -107,6 +107,7 @@ namespace SpaceGame.Player
             _transform.rotation = Quaternion.Euler(Vector3.forward * _zRotation);
         }
         #endregion
+
         #endregion
     }
 }
