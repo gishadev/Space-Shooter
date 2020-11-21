@@ -82,12 +82,17 @@ namespace SpaceGame.EnemyLogic
 
         void Shoot()
         {
-            Transform turret = turretRig.transform.GetChild(0);
+            var turret = turretRig.transform.GetChild(0);
+            var position = turret.position;
+
+            var dir = (_target.position - transform.position).normalized;
+            var rotZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
+            var rotation = Quaternion.Euler(Vector3.forward * rotZ);
 
             ProjectileCreator.CreateProjectile(
                 projPrefab,
-                turret.position,
-                Quaternion.Inverse(turret.rotation),
+                position,
+                rotation,
                 1,
                 0f);
         }
