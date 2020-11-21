@@ -46,7 +46,7 @@ namespace SpaceGame.Player
 
         #endregion
 
-        void Die()
+        public void Die()
         {
             GameManager.Instance.ReloadLevel();
         }

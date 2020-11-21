@@ -1,9 +1,8 @@
-﻿using SpaceGame.EnemyLogic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SpaceGame.Projectile
 {
-    public class Projectile : MonoBehaviour
+    public abstract class Projectile : MonoBehaviour
     {
         [Header("General")]
         [SerializeField] private float flySpeed = default;
@@ -14,8 +13,10 @@ namespace SpaceGame.Projectile
         [Header("Layer Mask")]
         [SerializeField] private LayerMask whatIsSolid = default;
 
+        public int Damage => damage;
 
         Transform _transform;
+
 
         private void Awake()
         {
@@ -50,15 +51,8 @@ namespace SpaceGame.Projectile
             if (hitInfo.collider != null) OnHit(hitInfo);
         }
 
-        void OnHit(RaycastHit2D hitInfo)
-        {
-            Enemy enemy;
-            if (hitInfo.collider.TryGetComponent(out enemy))
-                enemy.TakeDamage(damage);
+        public abstract void OnHit(RaycastHit2D hitInfo);
 
-            DestroyProjectile();
-        }
-
-        void DestroyProjectile() => gameObject.SetActive(false);
+        public void DestroyProjectile() => gameObject.SetActive(false);
     }
 }

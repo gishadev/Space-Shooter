@@ -755,8 +755,9 @@ Transform:
   - {fileID: 1658776747}
   - {fileID: 1473421262}
   - {fileID: 1200856561}
+  - {fileID: 1439521156}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1417489067
 GameObject:
@@ -802,10 +803,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesToSpawn:
-  - {fileID: 11400000, guid: 5b39ef464d783e14399def22fb85c639, type: 2}
-  - {fileID: 11400000, guid: e65a56e90330e02438155b647060534a, type: 2}
+  - {fileID: 7226457425575714504, guid: 29e0b386cc8c86340a8c01c53105b0e2, type: 3}
+  - {fileID: 7917612184582156542, guid: 327ab1241ba2b3e41b41bcd009ac36f2, type: 3}
   checkDelayInSeconds: 3.5
   spawnTimeInSeconds: 2
+--- !u!4 &1439521156 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6608248911941925456, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
+  m_PrefabInstance: {fileID: 6608248913084220077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1473421261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1127,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1363089560}
     m_Modifications:
     - target: {fileID: 6608248911941925456, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1137,15 +1143,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6608248911941925456, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6608248911941925456, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6608248911941925456, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6608248911941925456, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1153,7 +1159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6608248911941925456, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6608248911941925456, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

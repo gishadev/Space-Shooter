@@ -8,7 +8,7 @@ namespace SpaceGame.EnemyLogic
     public class EnemySpawner : MonoBehaviour
     {
         [Header("Data")]
-        [SerializeField] private EnemySpawnData[] enemiesToSpawn = default;
+        [SerializeField] private GameObject[] enemiesToSpawn = default;
         [Header("Timings")]
         [SerializeField] private float checkDelayInSeconds = default;
         [SerializeField] private float spawnTimeInSeconds = default;
@@ -62,13 +62,11 @@ namespace SpaceGame.EnemyLogic
 
         GameObject SpawnEnemy()
         {
-            var data = enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)];
-
-            GameObject prefab = data.prefab;
-            Vector2 position = new Vector2(
+            var prefab = enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)];
+            var position = new Vector2(
                 Random.Range(WorldBounds.MaxX, -WorldBounds.MaxX),
                 Random.Range(WorldBounds.MaxY, -WorldBounds.MaxY));
-            Quaternion rotation = prefab.transform.rotation;
+            var rotation = prefab.transform.rotation;
 
             return PoolManager.Instantiate(prefab, position, rotation);
         }

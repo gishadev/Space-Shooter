@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: PoolObjectsCollection
   m_EditorClassIdentifier: 
   poolObjects:
-  - name: Turret
+  - name: Stationary
     prefabs:
     - {fileID: 7917612184582156542, guid: 327ab1241ba2b3e41b41bcd009ac36f2, type: 3}
+    - {fileID: 7917612184582156542, guid: aba63736e1c16ba4e808a8831c632d47, type: 3}
     initCount: 3
   - name: Player Projectile
     prefabs:

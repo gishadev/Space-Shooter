@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7098100801874879456}
   - component: {fileID: 7098100801874879457}
   - component: {fileID: 7098100801874879486}
-  - component: {fileID: 8934261240727865924}
   - component: {fileID: 3717169567612398024}
+  - component: {fileID: 7339847321452284082}
   m_Layer: 0
   m_Name: Enemy Projectile
   m_TagString: Enemy
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 97fca8262aebf1c4fb8e0481bf238a1a, type: 3}
   m_Color: {r: 0.8867924, g: 0.0758382, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,7 +92,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7098100801874879487}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -101,25 +101,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &8934261240727865924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7098100801874879487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b83ade45e6cb9d74ba60645633e6cfda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flySpeed: 5
-  lifeTime: 10
-  damage: 1
-  rayLength: 0.15
-  whatIsSolid:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!114 &3717169567612398024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,3 +113,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1eaadb4c1986ed41bfdd6e9a07cff1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7339847321452284082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7098100801874879487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43de0a8982da9aa47bb7bb6b38555500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flySpeed: 5
+  lifeTime: 5
+  damage: 1
+  rayLength: 0.15
+  whatIsSolid:
+    serializedVersion: 2
+    m_Bits: 512
