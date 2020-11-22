@@ -7,11 +7,12 @@ namespace SpaceGame.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        [Header("General Data")]
         [SerializeField] private PlayerSpaceshipData spaceshipData = default;
-        public PlayerSpaceshipData SpaceshipData => spaceshipData;
 
         float _zRotation, _lastShootTime;
 
+        public PlayerSpaceshipData SpaceshipData => spaceshipData;
         public float ThrustInput => _controls.Player.Thrust.ReadValue<float>();
         public float SteeringInput => _controls.Player.Steering.ReadValue<float>();
         public bool IsShootingInput { get; private set; }
@@ -91,8 +92,7 @@ namespace SpaceGame.Player
         #region Movement
         private void PlayerThrusting(float thrustInput)
         {
-            if (thrustInput <= 0)
-                return;
+            if (thrustInput <= 0f) return;
 
             var addVel = (Vector2)_transform.up * thrustInput * SpaceshipData.ThrustAccelerationSpeed * Time.deltaTime;
             _rb.velocity = Vector2.ClampMagnitude(_rb.velocity + addVel, SpaceshipData.ThrustMaxSpeed);
