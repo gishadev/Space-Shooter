@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/_Project/Data/PlayerInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/_Project/Data/Player/PlayerInput.inputactions'
 
 using System;
 using System.Collections;
@@ -6,14 +6,12 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace SpaceGame.Player
+public class @PlayerInput : IInputActionCollection, IDisposable
 {
-    public class @PlayerInput : IInputActionCollection, IDisposable
+    public InputActionAsset asset { get; }
+    public @PlayerInput()
     {
-        public InputActionAsset asset { get; }
-        public @PlayerInput()
-        {
-            asset = InputActionAsset.FromJson(@"{
+        asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
@@ -201,114 +199,180 @@ namespace SpaceGame.Player
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""2ac071a6-b1be-4fca-875e-7e1b0fd23442"",
+            ""actions"": [
+                {
+                    ""name"": ""RKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1afee2b-6dd8-41d8-a1ab-1765eef61e7c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b5f588dd-1419-47a9-85c7-cf7a23041e10"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
-            // Player
-            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
-            m_Player_Thrust = m_Player.FindAction("Thrust", throwIfNotFound: true);
-            m_Player_Steering = m_Player.FindAction("Steering", throwIfNotFound: true);
-        }
-
-        public void Dispose()
-        {
-            UnityEngine.Object.Destroy(asset);
-        }
-
-        public InputBinding? bindingMask
-        {
-            get => asset.bindingMask;
-            set => asset.bindingMask = value;
-        }
-
-        public ReadOnlyArray<InputDevice>? devices
-        {
-            get => asset.devices;
-            set => asset.devices = value;
-        }
-
-        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
-
-        public bool Contains(InputAction action)
-        {
-            return asset.Contains(action);
-        }
-
-        public IEnumerator<InputAction> GetEnumerator()
-        {
-            return asset.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public void Enable()
-        {
-            asset.Enable();
-        }
-
-        public void Disable()
-        {
-            asset.Disable();
-        }
-
         // Player
-        private readonly InputActionMap m_Player;
-        private IPlayerActions m_PlayerActionsCallbackInterface;
-        private readonly InputAction m_Player_Shoot;
-        private readonly InputAction m_Player_Thrust;
-        private readonly InputAction m_Player_Steering;
-        public struct PlayerActions
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_Thrust = m_Player.FindAction("Thrust", throwIfNotFound: true);
+        m_Player_Steering = m_Player.FindAction("Steering", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_RKey = m_UI.FindAction("RKey", throwIfNotFound: true);
+    }
+
+    public void Dispose()
+    {
+        UnityEngine.Object.Destroy(asset);
+    }
+
+    public InputBinding? bindingMask
+    {
+        get => asset.bindingMask;
+        set => asset.bindingMask = value;
+    }
+
+    public ReadOnlyArray<InputDevice>? devices
+    {
+        get => asset.devices;
+        set => asset.devices = value;
+    }
+
+    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+    public bool Contains(InputAction action)
+    {
+        return asset.Contains(action);
+    }
+
+    public IEnumerator<InputAction> GetEnumerator()
+    {
+        return asset.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    public void Enable()
+    {
+        asset.Enable();
+    }
+
+    public void Disable()
+    {
+        asset.Disable();
+    }
+
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_Thrust;
+    private readonly InputAction m_Player_Steering;
+    public struct PlayerActions
+    {
+        private @PlayerInput m_Wrapper;
+        public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @Thrust => m_Wrapper.m_Player_Thrust;
+        public InputAction @Steering => m_Wrapper.m_Player_Steering;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
         {
-            private @PlayerInput m_Wrapper;
-            public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
-            public InputAction @Thrust => m_Wrapper.m_Player_Thrust;
-            public InputAction @Steering => m_Wrapper.m_Player_Steering;
-            public InputActionMap Get() { return m_Wrapper.m_Player; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-            public void SetCallbacks(IPlayerActions instance)
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
-                {
-                    @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                    @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                    @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                    @Thrust.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
-                    @Thrust.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
-                    @Thrust.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
-                    @Steering.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
-                    @Steering.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
-                    @Steering.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
-                }
-                m_Wrapper.m_PlayerActionsCallbackInterface = instance;
-                if (instance != null)
-                {
-                    @Shoot.started += instance.OnShoot;
-                    @Shoot.performed += instance.OnShoot;
-                    @Shoot.canceled += instance.OnShoot;
-                    @Thrust.started += instance.OnThrust;
-                    @Thrust.performed += instance.OnThrust;
-                    @Thrust.canceled += instance.OnThrust;
-                    @Steering.started += instance.OnSteering;
-                    @Steering.performed += instance.OnSteering;
-                    @Steering.canceled += instance.OnSteering;
-                }
+                @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @Thrust.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
+                @Thrust.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
+                @Thrust.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrust;
+                @Steering.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
+                @Steering.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
+                @Steering.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSteering;
+            }
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @Thrust.started += instance.OnThrust;
+                @Thrust.performed += instance.OnThrust;
+                @Thrust.canceled += instance.OnThrust;
+                @Steering.started += instance.OnSteering;
+                @Steering.performed += instance.OnSteering;
+                @Steering.canceled += instance.OnSteering;
             }
         }
-        public PlayerActions @Player => new PlayerActions(this);
-        public interface IPlayerActions
+    }
+    public PlayerActions @Player => new PlayerActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_RKey;
+    public struct UIActions
+    {
+        private @PlayerInput m_Wrapper;
+        public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RKey => m_Wrapper.m_UI_RKey;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
         {
-            void OnShoot(InputAction.CallbackContext context);
-            void OnThrust(InputAction.CallbackContext context);
-            void OnSteering(InputAction.CallbackContext context);
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @RKey.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRKey;
+                @RKey.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRKey;
+                @RKey.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRKey;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @RKey.started += instance.OnRKey;
+                @RKey.performed += instance.OnRKey;
+                @RKey.canceled += instance.OnRKey;
+            }
         }
+    }
+    public UIActions @UI => new UIActions(this);
+    public interface IPlayerActions
+    {
+        void OnShoot(InputAction.CallbackContext context);
+        void OnThrust(InputAction.CallbackContext context);
+        void OnSteering(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnRKey(InputAction.CallbackContext context);
     }
 }

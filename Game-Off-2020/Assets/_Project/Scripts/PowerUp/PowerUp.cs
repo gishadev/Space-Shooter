@@ -5,6 +5,8 @@ namespace SpaceGame.PowerUp
 {
     public abstract class PowerUp : MonoBehaviour
     {
+        [SerializeField] private string effectName = default;
+
         PlayerInfluencer _influencer;
         public PlayerInfluencer Influencer => _influencer;
 
@@ -18,6 +20,7 @@ namespace SpaceGame.PowerUp
 
         void Destroy()
         {
+            Effects.VFX.VFXManager.Instance.Emit(effectName, transform.position);
             gameObject.SetActive(false);
         }
 

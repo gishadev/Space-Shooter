@@ -1,12 +1,8 @@
-﻿using SpaceGame.Optimisation;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SpaceGame.EnemyLogic
 {
-    public abstract class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour
     {
         [Header("General")]
         [SerializeField] private int maxHealth = default;
@@ -52,72 +48,20 @@ namespace SpaceGame.EnemyLogic
             _collider.enabled = true;
         }
 
-        public abstract void TakeDamage(int dmg);
-        public abstract void Die();
-    }
-
-    [System.Serializable]
-    public class PowerUpDropper
-    {
-        [Header("Power-Up Dropping")]
-        [SerializeField] private float dropChance = default;
-        [SerializeField] private List<PowerUpDropItem> dropItems = new List<PowerUpDropItem>();
-
-        private const string FolderPath = "Assets/_Project/Prefabs/PowerUps";
-
-        public void Drop(Vector3 pos) => PoolManager.Instantiate(GetRandomPowerUp(), pos, Quaternion.identity);
-        public bool IsDrop() => Random.Range(0f, 1f) < dropChance;
-
-        public GameObject GetRandomPowerUp()
+        public void TakeDamage(int dmg)
         {
-            int[] allEntries = dropItems.Select(x => x.Entries).ToArray();
-            int maxEntry = allEntries.Sum();
-            int randomEntry = Random.Range(0, maxEntry);
+            Health -= dmg;
 
-            for (int i = 0, leftPoint = 0; i < allEntries.Length; i++)
-            {
-                int rightPoint = leftPoint + allEntries[i];
-                if (randomEntry >= leftPoint && randomEntry <= rightPoint) return dropItems[i].Prefab;
-
-                leftPoint += allEntries[i];
-            }
-
-            Debug.LogError("Prefab wasn't found!");
-            return null;
+            if (Health <= 0) Die();
         }
 
-        public void UpdateDropItems()
+        public virtual void Die()
         {
-            string[] pathes = Directory.GetFiles(FolderPath);
+            Effects.VFX.VFXManager.Instance.Emit("Enemy_Destroy", transform.position);
+            gameObject.SetActive(false);
 
-            if (dropItems.Count == pathes.Length)
-                return;
-
-            foreach (string path in pathes)
-            {
-                if (path.Contains(".meta")) continue;
-
-                Object prefabObject = UnityEditor.AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
-
-                GameObject prefab = prefabObject as GameObject;
-                if (!dropItems.Select(x => x.Prefab).Contains(prefab))
-                    dropItems.Add(new PowerUpDropItem(prefab));
-            }
-        }
-    }
-
-    [System.Serializable]
-    internal class PowerUpDropItem
-    {
-        [SerializeField] private GameObject powerUpPrefab = default;
-        [SerializeField] private int entries = default;
-
-        public GameObject Prefab => powerUpPrefab;
-        public int Entries => entries;
-
-        public PowerUpDropItem(GameObject _prefab)
-        {
-            powerUpPrefab = _prefab;
+            if (PowerUpDropper.IsDrop())
+                PowerUpDropper.Drop(transform.position);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace SpaceGame.Projectile
             if (hitInfo.collider.TryGetComponent(out enemy))
                 enemy.TakeDamage(Damage);
 
+            Effects.VFX.VFXManager.Instance.Emit("Player_Projectile_Destroy", transform.position);
             DestroyProjectile();
         }
     }

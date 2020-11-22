@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eaee351ea93f49439361a218be6ae90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: PU_LevelUp

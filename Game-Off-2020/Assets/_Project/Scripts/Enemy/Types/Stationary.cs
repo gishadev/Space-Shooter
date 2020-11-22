@@ -39,7 +39,6 @@ namespace SpaceGame.EnemyLogic
             StopAllCoroutines();
         }
 
-        #region Enemy
         public override void OnSpawn()
         {
             base.OnSpawn();
@@ -49,24 +48,13 @@ namespace SpaceGame.EnemyLogic
 
         public override void Die()
         {
+            base.Die();
             ScoreManager.AddScore(50);
-            gameObject.SetActive(false);
-
-            if (PowerUpDropper.IsDrop())
-                PowerUpDropper.Drop(_transform.position);
         }
-
-        public override void TakeDamage(int dmg)
-        {
-            Health -= dmg;
-
-            if (Health <= 0) Die();
-        }
-        #endregion
 
         void AimOnTarget()
         {
-            var dir = (_target.position - transform.position).normalized;
+            var dir = (_target.position - _transform.position).normalized;
             float rotZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90f;
             turretRig.rotation = Quaternion.Euler(Vector3.forward * rotZ);
         }
@@ -85,10 +73,11 @@ namespace SpaceGame.EnemyLogic
             var turret = turretRig.transform.GetChild(0);
             var position = turret.position;
 
-            var dir = (_target.position - transform.position).normalized;
+            var dir = (_target.position - _transform.position).normalized;
             var rotZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
             var rotation = Quaternion.Euler(Vector3.forward * rotZ);
 
+            Effects.VFX.VFXManager.Instance.Emit("Enemy_Shoot", position, rotation);
             ProjectileCreator.CreateProjectile(
                 projPrefab,
                 position,

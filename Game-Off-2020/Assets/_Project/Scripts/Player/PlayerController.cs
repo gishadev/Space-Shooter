@@ -77,6 +77,7 @@ namespace SpaceGame.Player
         }
         void Shoot()
         {
+            Effects.VFX.VFXManager.Instance.Emit("Player_Shoot", _shotPos.position, _shotPos.rotation);
             ProjectileCreator.CreateProjectile(
                 SpaceshipData.ProjectilePrefab,
                 _shotPos.position,

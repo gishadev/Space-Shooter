@@ -122,4 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fbd19287201c7459848da3d92fceb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: PU_ScoreUp
   count: 100

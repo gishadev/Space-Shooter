@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using SpaceGame.Optimisation;
 
 namespace SpaceGame.Effects.VFX
 {
@@ -26,7 +27,19 @@ namespace SpaceGame.Effects.VFX
                 return;
             }
 
-            Instantiate(effect.prefab, position, rotation);
+            PoolManager.Instantiate(effect.prefab, position, rotation);
+        }
+        public void Emit(string effectName, Vector3 position)
+        {
+            VFXData effect = Array.Find(effectsCollection, x => x.name == effectName);
+
+            if (effect == null)
+            {
+                Debug.LogErrorFormat("Effect with name {0} wasn't found!", effectName);
+                return;
+            }
+
+            PoolManager.Instantiate(effect.prefab, position, effect.prefab.transform.rotation);
         }
 
         #region ImportTarget

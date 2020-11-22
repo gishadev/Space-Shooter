@@ -122,4 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: badbc2771716c68468b436aaaf205407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectName: PU_ForceField
   affectTime: 3

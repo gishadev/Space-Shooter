@@ -46,20 +46,10 @@ namespace SpaceGame.EnemyLogic
             StartCoroutine(AccelerationCoroutine());
         }
 
-        public override void TakeDamage(int dmg)
-        {
-            Health -= dmg;
-
-            if (Health <= 0) Die();
-        }
-
         public override void Die()
         {
+            base.Die();
             ScoreManager.AddScore(25);
-            gameObject.SetActive(false);
-
-            if (PowerUpDropper.IsDrop())
-                PowerUpDropper.Drop(_transform.position);
         }
         #endregion
 

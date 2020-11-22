@@ -186,6 +186,33 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "2ac071a6-b1be-4fca-875e-7e1b0fd23442",
+            "actions": [
+                {
+                    "name": "RKey",
+                    "type": "Button",
+                    "id": "d1afee2b-6dd8-41d8-a1ab-1765eef61e7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b5f588dd-1419-47a9-85c7-cf7a23041e10",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

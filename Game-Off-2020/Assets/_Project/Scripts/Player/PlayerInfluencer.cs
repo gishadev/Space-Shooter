@@ -1,5 +1,4 @@
-﻿using SpaceGame.Core;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace SpaceGame.Player
@@ -11,11 +10,13 @@ namespace SpaceGame.Player
 
         public bool IsImmortal { get; private set; } = false;
 
+        Transform _transform;
         Collider2D _collider;
         PlayerSpaceshipData _spaceshipData;
 
         private void Awake()
         {
+            _transform = transform;
             _collider = GetComponent<Collider2D>();
             _spaceshipData = GetComponent<PlayerController>().SpaceshipData;
         }
@@ -48,7 +49,8 @@ namespace SpaceGame.Player
 
         public void Die()
         {
-            GameManager.Instance.ReloadLevel();
+            Effects.VFX.VFXManager.Instance.Emit("Player_Destroy", _transform.position);
+            _transform.gameObject.SetActive(false);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
