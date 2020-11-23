@@ -1379,6 +1379,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2977266981995085952, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 32cc95ed5efe73f41bbeb2ccba3127e5, type: 2}
+    - target: {fileID: 2977266981995085952, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9481132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977266981995085952, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977266981995085952, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977266981995085952, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
+      propertyPath: m_Color.a
+      value: 0.3529412
+      objectReference: {fileID: 0}
     - target: {fileID: 4279144838135901864, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -1451,9 +1471,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7247530192330424142, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7247530192330424142, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7695222919723250498, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8110772486803020453, guid: c339d6076797cc94ab722069c8374ea1, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
