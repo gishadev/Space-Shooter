@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: PU_ForceField
-  affectTime: 3
+  affectTime: 5.5

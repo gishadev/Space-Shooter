@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43de0a8982da9aa47bb7bb6b38555500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySpeed: 5
+  flySpeed: 4.5
   lifeTime: 5
   damage: 1
   rayLength: 0.15

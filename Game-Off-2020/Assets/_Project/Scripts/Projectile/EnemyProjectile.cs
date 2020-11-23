@@ -11,8 +11,13 @@ namespace SpaceGame.Projectile
             if (hitInfo.collider.TryGetComponent(out player))
                 player.Die();
 
-            Effects.VFX.VFXManager.Instance.Emit("Enemy_Projectile_Destroy", transform.position);
             DestroyProjectile();
+        }
+
+        public override void DestroyProjectile()
+        {
+            base.DestroyProjectile();
+            Effects.VFX.VFXManager.Instance.Emit("Enemy_Projectile_Destroy", transform.position);
         }
     }
 }

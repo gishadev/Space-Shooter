@@ -2,7 +2,7 @@
 
 namespace SpaceGame.Projectile
 {
-    public abstract class Projectile : MonoBehaviour
+    public class Projectile : MonoBehaviour
     {
         [Header("General")]
         [SerializeField] private float flySpeed = default;
@@ -15,6 +15,8 @@ namespace SpaceGame.Projectile
 
         public int Damage => damage;
 
+        bool _isInit = false;
+
         Transform _transform;
 
 
@@ -25,6 +27,12 @@ namespace SpaceGame.Projectile
 
         private void OnEnable()
         {
+            if (!_isInit)
+            {
+                _isInit = true;
+                return;
+            }
+
             Invoke("DestroyProjectile", lifeTime);
         }
 
@@ -51,8 +59,13 @@ namespace SpaceGame.Projectile
             if (hitInfo.collider != null) OnHit(hitInfo);
         }
 
-        public abstract void OnHit(RaycastHit2D hitInfo);
+        public virtual void OnHit(RaycastHit2D hitInfo)
+        { }
 
-        public void DestroyProjectile() => gameObject.SetActive(false);
+        public virtual void DestroyProjectile()
+        {
+            CancelInvoke();
+            gameObject.SetActive(false);
+        }
     }
 }
