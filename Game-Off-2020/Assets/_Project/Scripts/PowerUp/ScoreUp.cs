@@ -7,6 +7,10 @@ namespace SpaceGame.PowerUp
     {
         [SerializeField] private int count = default;
 
-        public override void OnInteract() => ScoreManager.AddScore(count);
+        public override void OnInteract()
+        {
+            base.OnInteract();
+            ScoreManager.AddScore(count);
+        }
     }
 }

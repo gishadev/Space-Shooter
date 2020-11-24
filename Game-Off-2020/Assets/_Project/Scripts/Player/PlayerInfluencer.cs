@@ -11,19 +11,18 @@ namespace SpaceGame.Player
         public bool IsImmortal { get; private set; } = false;
 
         Transform _transform;
-        Collider2D _collider;
         PlayerSpaceshipData _spaceshipData;
 
         private void Awake()
         {
             _transform = transform;
-            _collider = GetComponent<Collider2D>();
             _spaceshipData = GetComponent<PlayerController>().SpaceshipData;
         }
 
         private void Start()
         {
             _spaceshipData.LevelIndex = 0;
+            Effects.Audio.AudioManager.Instance.PlaySFX("Player_Spawn");
         }
 
         #region Force Field
@@ -50,6 +49,8 @@ namespace SpaceGame.Player
         public void Die()
         {
             Effects.VFX.VFXManager.Instance.Emit("Player_Destroy", _transform.position);
+            Effects.Audio.AudioManager.Instance.PlaySFX("Player_Destroy");
+
             _transform.gameObject.SetActive(false);
         }
 

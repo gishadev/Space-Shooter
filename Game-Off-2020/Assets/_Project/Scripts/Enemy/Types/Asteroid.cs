@@ -80,7 +80,13 @@ namespace SpaceGame.EnemyLogic
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Enemy")) _dir = GetReflectDirection(other);
+            if (other.CompareTag("Enemy")) Reflect(other);
+        }
+
+        private void Reflect(Collider2D other)
+        {
+            _dir = GetReflectDirection(other);
+            Effects.Audio.AudioManager.Instance.PlaySFX("Asteroid_Collision");
         }
     }
 }

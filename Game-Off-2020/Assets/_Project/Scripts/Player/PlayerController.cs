@@ -78,6 +78,8 @@ namespace SpaceGame.Player
         void Shoot()
         {
             Effects.VFX.VFXManager.Instance.Emit("Player_Shoot", _shotPos.position, _shotPos.rotation);
+            Effects.Audio.AudioManager.Instance.PlaySFX("Player_Shoot");
+
             ProjectileCreator.CreateProjectile(
                 SpaceshipData.ProjectilePrefab,
                 _shotPos.position,

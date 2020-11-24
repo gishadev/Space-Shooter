@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SpaceGame.PowerUp
 {
-    public abstract class PowerUp : MonoBehaviour
+    public class PowerUp : MonoBehaviour
     {
         [SerializeField] private string effectName = default;
 
@@ -16,7 +16,10 @@ namespace SpaceGame.PowerUp
                 Debug.LogError("Player Influencer wasn't found!");
         }
 
-        public abstract void OnInteract();
+        public virtual void OnInteract()
+        {
+            Effects.Audio.AudioManager.Instance.PlaySFX("PowerUp_Use");
+        }
 
         void Destroy()
         {

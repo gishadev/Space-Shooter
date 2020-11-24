@@ -78,6 +78,8 @@ namespace SpaceGame.EnemyLogic
             var rotation = Quaternion.Euler(Vector3.forward * rotZ);
 
             Effects.VFX.VFXManager.Instance.Emit("Enemy_Shoot", position, rotation);
+            Effects.Audio.AudioManager.Instance.PlaySFX("Enemy_Shoot");
+
             ProjectileCreator.CreateProjectile(
                 projPrefab,
                 position,

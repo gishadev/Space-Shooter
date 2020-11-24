@@ -778,8 +778,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf4889b9d97c794d84d0d3cfaf98388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicCollection: []
-  sfxCollection: []
+  musicCollection:
+  - Name: Music
+    audioClip: {fileID: 8300000, guid: 23c4f032ab39cb24aa5322c99bf4f0ec, type: 3}
+    isLooping: 1
+    isFade: 0
+    volume: 0.2
+    pitch: 1.1
+    go: {fileID: 0}
+    audioSource: {fileID: 0}
+  sfxCollection:
+  - Name: Asteroid_Collision
+    audioClip: {fileID: 8300000, guid: d8ab2e62e46569045a45d7918096a23f, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+    go: {fileID: 0}
+    audioSource: {fileID: 0}
+  - Name: Enemy_Destroy
+    audioClip: {fileID: 8300000, guid: eb3bc122a9d0df242b5d0899576de34d, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+    go: {fileID: 0}
+    audioSource: {fileID: 0}
+  - Name: Enemy_Hit
+    audioClip: {fileID: 8300000, guid: d2c775c4416081e4a8c5e039e268b2ad, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 0.5
+    pitch: 1.5
+    go: {fileID: 0}
+    audioSource: {fileID: 0}
+  - Name: Enemy_Shoot
+    audioClip: {fileID: 8300000, guid: 145838827c1dac448926709cf332d661, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+    go: {fileID: 0}
+    audioSource: {fileID: 0}
+  - Name: Enemy_Spawn
+    audioClip: {fileID: 8300000, guid: 2b11ffe2c54689b449ab61b7bd4245dc, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+    go: {fileID: 0}
+    audioSource: {fileID: 0}
+  - Name: Player_Destroy
+    audioClip: {fileID: 8300000, guid: 2960c7db58286804aa7719bcd9c08a50, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+    go: {fileID: 0}
+    audioSource: {fileID: 0}
+  - Name: Player_Shoot
+    audioClip: {fileID: 8300000, guid: b037055112b3e894fb23b53d2b00d68e, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 0.45
+    pitch: 1
+    go: {fileID: 0}
+    audioSource: {fileID: 0}
+  - Name: Player_Spawn
+    audioClip: {fileID: 8300000, guid: 2a934d22111834649a8a5bf349e1c152, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 0.5
+    pitch: 1
+    go: {fileID: 0}
+    audioSource: {fileID: 0}
+  - Name: PowerUp_Use
+    audioClip: {fileID: 8300000, guid: ece10ad338cc8754d8ab36b681366a61, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+    go: {fileID: 0}
+    audioSource: {fileID: 0}
   fadeTransitionSpeed: 0.5
 --- !u!1 &1158296523
 GameObject:

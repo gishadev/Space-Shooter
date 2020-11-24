@@ -48,6 +48,7 @@ namespace SpaceGame.EnemyLogic
 
         public virtual void OnSpawn()
         {
+            Effects.Audio.AudioManager.Instance.PlaySFX("Enemy_Spawn");
             _collider.enabled = true;
         }
 
@@ -55,6 +56,8 @@ namespace SpaceGame.EnemyLogic
         {
             Health -= dmg;
             StartCoroutine(DamageShaderCoroutine());
+
+            Effects.Audio.AudioManager.Instance.PlaySFX("Enemy_Hit");
 
             if (Health <= 0) 
                 Die();
@@ -75,6 +78,8 @@ namespace SpaceGame.EnemyLogic
         public virtual void Die()
         {
             Effects.VFX.VFXManager.Instance.Emit("Enemy_Destroy", transform.position);
+            Effects.Audio.AudioManager.Instance.PlaySFX("Enemy_Destroy");
+
             StopAllCoroutines();
             _mat.SetFloat("_DmgControl", 0f);
             gameObject.SetActive(false);

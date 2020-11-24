@@ -43,6 +43,8 @@ namespace SpaceGame.Effects.Audio
 
             SetUpAudioArray(musicCollection);
             SetUpAudioArray(sfxCollection);
+
+            PlayMusic("Music");
         }
 
         private void CreateInstance()

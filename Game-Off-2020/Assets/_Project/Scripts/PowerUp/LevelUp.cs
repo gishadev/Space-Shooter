@@ -2,6 +2,10 @@
 {
     public class LevelUp : PowerUp
     {
-        public override void OnInteract() => Influencer.LevelUp();
+        public override void OnInteract()
+        {
+            base.OnInteract();
+            Influencer.LevelUp();
+        }
     }
 }
