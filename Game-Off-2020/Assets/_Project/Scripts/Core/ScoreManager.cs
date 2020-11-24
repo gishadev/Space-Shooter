@@ -21,7 +21,7 @@ namespace SpaceGame.Core
         public static void AddScore(int n)
         {
             Score += n;
-            UIManager.ScoreUI.UpdateScoreUI(Score);
+            UIManager.Instance.ScoreUI.UpdateScoreUI(Score);
         }
     }
 }

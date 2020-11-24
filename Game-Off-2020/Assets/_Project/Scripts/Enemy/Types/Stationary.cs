@@ -31,6 +31,9 @@ namespace SpaceGame.EnemyLogic
 
         private void Update()
         {
+            if (_target == null)
+                return;
+
             AimOnTarget();
         }
 

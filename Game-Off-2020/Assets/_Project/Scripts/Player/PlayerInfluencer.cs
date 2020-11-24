@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SpaceGame.UI;
+using System.Collections;
 using UnityEngine;
 
 namespace SpaceGame.Player
@@ -50,6 +51,8 @@ namespace SpaceGame.Player
         {
             Effects.VFX.VFXManager.Instance.Emit("Player_Destroy", _transform.position);
             Effects.Audio.AudioManager.Instance.PlaySFX("Player_Destroy");
+
+            UIManager.Instance.ActivateRestartText();
 
             _transform.gameObject.SetActive(false);
         }

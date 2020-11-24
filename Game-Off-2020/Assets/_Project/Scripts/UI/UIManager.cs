@@ -1,15 +1,28 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace SpaceGame.UI
 {
-    public static class UIManager
+    public class UIManager : MonoBehaviour
     {
-        public static ScoreUI ScoreUI
-        { get; set; }
+        #region Singleton
+        public static UIManager Instance { get; private set; }
+        #endregion
 
-        public static void Init()
+        [SerializeField] private TMP_Text restartText = default;
+
+        public ScoreUI ScoreUI
+        { get; private set; }
+
+        private void Awake()
         {
+            Instance = this;
             ScoreUI = GameObject.FindObjectOfType<ScoreUI>();
+        }
+
+        public void ActivateRestartText()
+        {
+            restartText.enabled = true;
         }
     }
 }
